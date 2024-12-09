@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
 // PayBillsPage widget for the Pay Bills screen.
@@ -108,11 +110,11 @@ class PaymentConfirmationPage extends StatelessWidget {
 
   // Constructor to receive payment details.
   const PaymentConfirmationPage({
-    Key? key,
+    super.key,
     required this.biller,
     required this.amount,
     required this.paymentMethod,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

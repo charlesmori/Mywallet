@@ -1,6 +1,7 @@
 // SignUpPage widget with validation and password confirmation.
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, prefer_const_constructors
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -14,6 +15,8 @@ class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>(); // Key to identify the form state.
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  bool passToggle = true;
+  bool passToggle1 = true;
 
   @override
   void dispose() {
@@ -71,10 +74,24 @@ class _SignUpPageState extends State<SignUpPage> {
               const SizedBox(height: 20),
               TextFormField(
                 controller: _passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
+                obscureText: passToggle ? true : false,
+                decoration: InputDecoration(
                   labelText: 'Password',
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.lock),
+                  suffixIcon: InkWell(
+                    onTap: () {
+                      if (passToggle == true) {
+                        passToggle = false;
+                      } else {
+                        passToggle = true;
+                      }
+                      setState(() {});
+                    },
+                    child: passToggle
+                        ? Icon(CupertinoIcons.eye_slash_fill)
+                        : Icon(CupertinoIcons.eye_fill),
+                  ),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -110,7 +127,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   if (_formKey.currentState!.validate()) {
                     // If the form is valid, navigate to the login screen.
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Account created successfully!')),
+                      const SnackBar(
+                          content: Text('Account created successfully!')),
                     );
                     Navigator.pop(context);
                   }

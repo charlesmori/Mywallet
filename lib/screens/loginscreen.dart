@@ -1,11 +1,21 @@
+// ignore_for_file: prefer_const_constructors, unused_import
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_pocket_wallet/screens/home_page.dart';
 import 'package:my_pocket_wallet/screens/maindashboard.dart';
 import 'package:my_pocket_wallet/screens/signgin.dart';
 
 // LoginPage widget for the login screen.
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool passToggle = true;
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +42,25 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const TextField(
-              obscureText: true,
+            TextField(
+              obscureText: passToggle ? true : false,
               decoration: InputDecoration(
                 labelText: 'Password',
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
+                prefixIcon: const Icon(Icons.lock),
+                  suffixIcon: InkWell(
+                    onTap: () {
+                      if (passToggle == true) {
+                        passToggle = false;
+                      } else {
+                        passToggle = true;
+                      }
+                      setState(() {});
+                    },
+                    child: passToggle
+                        ? Icon(CupertinoIcons.eye_slash_fill)
+                        : Icon(CupertinoIcons.eye_fill),
+                  ),
               ),
             ),
             const SizedBox(height: 20),
@@ -45,7 +69,8 @@ class LoginPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const HomePage(),
+                    // builder: (context) => const HomePage(),
+                    builder: (context) => const DashboardPage(),
                   ),
                 );
               },

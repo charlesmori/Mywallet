@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:my_pocket_wallet/screens/loginscreen.dart';
@@ -18,10 +18,7 @@ class MyPocketWallet extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'My Pocket Wallet',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home:  Splashscreen(), // Initial screen.
+      home:  const Splashscreen(), // Initial screen.
     );
   }
 }
-
-
-
