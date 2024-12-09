@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                   context,
                   MaterialPageRoute(
                     // builder: (context) => const HomePage(),
-                    builder: (context) => const DashboardPage(),
+                    builder: (context) => const HomePage(),
                   ),
                 );
               },
