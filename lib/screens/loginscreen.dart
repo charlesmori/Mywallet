@@ -3,8 +3,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_pocket_wallet/screens/home_page.dart';
-import 'package:my_pocket_wallet/screens/maindashboard.dart';
+// import 'package:my_pocket_wallet/screens/maindashboard.dart';
 import 'package:my_pocket_wallet/screens/signgin.dart';
+import 'package:my_pocket_wallet/screens/forgotpassword.dart';
 
 // LoginPage widget for the login screen.
 class LoginPage extends StatefulWidget {
@@ -86,6 +87,15 @@ class _LoginPageState extends State<LoginPage> {
               },
               child: const Text('Don’t have an account? Sign Up'),
             ),
+            TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+                          );
+                        },
+                          child: const Text('Forgot Password?'),
+              ),
           ],
         ),
       ),
